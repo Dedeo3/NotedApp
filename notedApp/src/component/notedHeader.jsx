@@ -1,12 +1,14 @@
 import React from "react";
-import {Input} from "./notedInput.jsx"
+// import {Input} from "./notedInput.jsx"
+// import NotedButton from "./notedButton.jsx"
 
-export class notedHeader extends React.Component {
+export default class NotedHeader extends React.Component {
     render() {
         return (
             <div className="header">
                 <h1 className="titleApp"> NotedApp</h1>
-                {/*<Input/>*/}
+                
+                {/* <NotedButton typeButton="add" action="add"/> */}
             </div>
         )
     }

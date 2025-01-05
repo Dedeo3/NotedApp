@@ -1,28 +1,44 @@
 import React from "react";
-import {notedButton} from "./notedButton.jsx";
+import NotedButton from "./notedButton.jsx";
 
-export class Input extends React.Component {
+export default class Input extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            text: ''
+            text: '',
+            errorMessage: "",
+            archived: false,
+            createAt: new Date(),
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
 
-    onInputChange(event) {
+    onInputChange = (event) => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
-    }
+        const charCount = this.countCharacters(value);
+
+        if (name === "title" && charCount > 50) {
+            this.setState({
+                errorMessage: "Max character for title is 50",
+            });
+        } else {
+            this.setState({
+                [name]: value,
+                errorMessage: "", // Reset pesan error jika valid
+            });
+        }
+    };
+
 
 
     onSubmit(event) {
         event.preventDefault();
-        this.props.addData(this.state)
-        console.log('Form submitted:', this.state); // Debugging atau log data
+        // eslint-disable-next-line react/prop-types
+        this.props.addData(this.state);
+        console.log('Form submitted:', this.state); 
     }
 
 
@@ -36,10 +52,25 @@ export class Input extends React.Component {
                 return '';
         }
     }
+    countCharacters(word) {
+        let count = 0;
+        for (let char of word) {
+            count++;
+        }
+        return count;
+    }
+
 
     render() {
+
         return (
             <form className="formAdd" onSubmit={this.onSubmit}>
+                <h3 className='titleAdd'>Create a notes</h3>
+                {this.state.errorMessage && (
+                    <p className="wordLimit">{this.state.errorMessage}</p>
+                )}
+                <p className="countWord">your character on title {this.countCharacters(this.state.title)} / 50
+                </p>
                 <input
                     type="text"
                     name="title"
@@ -48,7 +79,7 @@ export class Input extends React.Component {
                     value={this.state.title}
                     onChange={this.onInputChange}
                 />
-                <input
+                <textarea
                     type="text"
                     name="text"
                     className={this.getClassName('inputContent')}
@@ -56,7 +87,7 @@ export class Input extends React.Component {
                     value={this.state.text}
                     onChange={this.onInputChange}
                 />
-                <noteButton typeButton="Add" action="Add"/>
+                <NotedButton typeButton="add" action="add" />
             </form>
         );
     }

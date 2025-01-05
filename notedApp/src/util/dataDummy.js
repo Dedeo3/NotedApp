@@ -1,3 +1,5 @@
-export const data= ()=>{ return[]}
+const data = () => {
+    return []
+}
 
-export const dataArchieve= ()=>{ return[]}
+export {data}

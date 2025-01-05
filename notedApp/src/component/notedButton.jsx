@@ -1,11 +1,13 @@
 import react from 'react';
 
-export function notedButton({typeButton, action}){
+// eslint-disable-next-line react/prop-types
+export default function NotedButton({typeButton, action, callback,id}){
+
     const getClassName= ()=>{
         switch (typeButton){
-            case 'Delete':
+            case 'delete':
                 return 'delete_button'
-            case 'Add':
+            case 'add':
                 return 'add_button'
             case 'archive':
                 return 'archive_button'
@@ -30,9 +32,17 @@ export function notedButton({typeButton, action}){
 
         }
     }
+    // const handleClick = () => {
+        
+    //     if (callback) {
+    //         callback(action); 
+    //         console.log("callback", callback)
+    //     }
+    // };
 
     return(
-        <button type="submit" className={getClassName()} >
+        // onClick={handleClick}
+        <button type="submit" className={getClassName()}  >
             {defineAction()}
         </button>
     )
