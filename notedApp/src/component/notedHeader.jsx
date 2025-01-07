@@ -1,15 +1,17 @@
 import React from "react";
-// import {Input} from "./notedInput.jsx"
-// import NotedButton from "./notedButton.jsx"
+import Search from "./search";
 
 export default class NotedHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
     render() {
         return (
             <div className="header">
-                <h1 className="titleApp"> NotedApp</h1>
-                
-                {/* <NotedButton typeButton="add" action="add"/> */}
+                <h1 className="title-app">NotedApp</h1>
+                <Search searchData={this.props.searchData} />
             </div>
-        )
+        );
     }
 }

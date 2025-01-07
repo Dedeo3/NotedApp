@@ -4,41 +4,15 @@ import react from 'react';
 export default function NotedButton({typeButton, action, callback,id}){
 
     const getClassName= ()=>{
-        switch (typeButton){
-            case 'delete':
-                return 'delete_button'
-            case 'add':
-                return 'add_button'
-            case 'archive':
-                return 'archive_button'
-            case 'move':
-                return 'move_button'
-            default:
-                return ''
+        if (typeButton=== 'add'){
+            return 'add_button'
         }
     }
     const defineAction = ()=>{
-        switch (action){
-            case 'delete':
-                return 'Delete'
-            case 'add':
-                return 'Add'
-            case 'archive':
-                return 'Archive'
-            case 'move':
-                return 'Move'
-            default:
-                return ''
-
+        if(action === 'add'){
+            return 'Add Note'
         }
     }
-    // const handleClick = () => {
-        
-    //     if (callback) {
-    //         callback(action); 
-    //         console.log("callback", callback)
-    //     }
-    // };
 
     return(
         // onClick={handleClick}

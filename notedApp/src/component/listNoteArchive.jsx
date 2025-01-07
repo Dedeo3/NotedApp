@@ -1,8 +1,9 @@
 import React from 'react';
-import ListNoteContainer from './listNoteContainer';
 
-export default function ListNote({ dataNoted, onDelete, onArchive }) {
-    console.log("Received data in ListNote:", dataNoted);
+import ListArchiveNoteContainer from './listArchiveNoteContainer';
+
+export default function ListNoteArchive({ dataNoted, onDelete, onMove }) {
+    console.log("Received data in ListNoteArchive:", dataNoted);
     console.log("on delete di list", onDelete)
 
     if (dataNoted.length === 0) {
@@ -10,16 +11,16 @@ export default function ListNote({ dataNoted, onDelete, onArchive }) {
     }
 
     return (
-        <div className="listNote">
+        <div className="listNoteArchive">
             {dataNoted.map((note) => (
-                <ListNoteContainer
+                <ListArchiveNoteContainer
                     key={note.id}
                     id={note.id} 
                     title={note.title}
                     text={note.text}
                     createAt={note.createAt}
                     onDelete={onDelete}
-                    onArchive={onArchive}
+                    onMove={onMove}
                 />
             ))}
         </div>
